@@ -1,17 +1,14 @@
 {
   "name": "family-chain",
-  "version": "1.0.0",
-  "description": "",
-  "main": "truffle-config.js",
-  "directories": {
-    "test": "test"
-  },
+  "version": "0.0.1",
+  "description": "Build a family-chain",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint ./",
+    "build": "webpack",
+    "dev": "webpack-dev-server"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Christopher Knight",
+  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",

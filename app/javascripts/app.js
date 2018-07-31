@@ -1,10 +1,13 @@
-// Import the page's CSS. Webpack will know what to do with it.
-import "../stylesheets/app.css";
-// Import libraries we need.
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
+import 'bootstrap';
+import '../stylesheets/app.scss';
 import { default as Web3 } from 'web3';
 import { default as contract } from 'truffle-contract'
+
 var accounts;
 var account;
+
 window.App = {
   start: function() {
     var self = this;
@@ -40,7 +43,7 @@ window.addEventListener('load', function() {
 
     console.warn("No web3 detected. Please use MetaMask or Mist browser.");
   }
-  
+
 App.start();
   
 });
