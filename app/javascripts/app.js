@@ -17,11 +17,20 @@ var User = contract(user_artifacts);
 var accounts;
 var account;
 
+const ipfsAPI = require('ipfs-api');
+//const ipfs = ipfsAPI('localhost', '5001');
+const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'});
+
 window.App = {
   
   start: function() {
     
     var self = this;
+
+    ipfs.id(function(err, res) {
+      if (err) throw err
+      console.log("Connected to IPFS node!", res.id, res.agentVersion, res.protocolVersion);
+    });
     
     web3.eth.getAccounts(function(error, accounts) {
 
@@ -57,34 +66,76 @@ window.App = {
 
 
   createUser: function() {
+    
     var username = $('#sign-up-username').val();
     var title = $('#sign-up-title').val();
     var intro = $('#sign-up-intro').val();
-
-    // var ipfsHash = '';
-    var ipfsHash = 'not - available';
-    console.log('creating user on eth for', username, title, intro, ipfsHash);
+    var ipfsHash = '';
     
-    User.deployed().then(function(contractInstance) {
-    
-      contractInstance.createUser(username, ipfsHash, {
-        gas: 200000,
-        from: web3.eth.accounts[0]
+    console.log('creating user on ipfs for', username);
 
-      }).then(function(success) {
+    var userJson = {
+      username: username,
+      title: title,
+      intro: intro
+    };
 
-        if (success) {
-          console.log('created user on ethereum!');
-        } else {
-          console.log('error creating user on ethereum');
-        }
+    ipfs.add([Buffer.from(JSON.stringify(userJson))], function(err, res) {
 
-      }).catch(function(e) {
-        // There was an error! Handle it.
-        console.log('error creating user: ', username, ':', e);
+      if (err) throw err
+      ipfsHash = res[0].hash
+
+      console.log('creating user on eth for ', username, title, intro, ipfsHash);
+      
+      User.deployed().then(function(contractInstance) {
+        // contractInstance.createUser(web3.fromAscii(username), web3.fromAscii(title), intro, ipfsHash, {gas: 2000000, from: web3.eth.accounts[0]}).then(function(index) {
+      
+        contractInstance.createUser(username, ipfsHash, {
+          gas: 200000,
+          from: web3.eth.accounts[0]
+
+        }).then(function(success) {
+
+          if (success) {
+            
+            console.log('created user on ethereum!');
+            
+            window.location.reload;
+
+          } else {
+            console.log('error creating user on ethereum');
+          }
+
+        }).catch(function(e) {
+          // There was an error! Handle it.
+          console.log('error creating user: ', username, ': ', e);
+        });
+
       });
-
     });
+
+
+    
+    // User.deployed().then(function(contractInstance) {
+    
+    //   contractInstance.createUser(username, ipfsHash, {
+    //     gas: 200000,
+    //     from: web3.eth.accounts[0]
+
+    //   }).then(function(success) {
+
+    //     if (success) {
+    //       console.log('created user on ethereum!');
+    //     } else {
+    //       console.log('error creating user on ethereum');
+    //     }
+
+    //   }).catch(function(e) {
+    //     // There was an error! Handle it.
+    //     console.log('error creating user: ', username, ':', e);
+    //   });
+
+    // });
   },
 
   getAUser: function(instance, i) {
@@ -96,7 +147,8 @@ window.App = {
 
     return instanceUsed.getUsernameByIndex.call(i).then(function(_username) {
 
-      console.log('username:', username = web3.toAscii(_username), i); 
+      console.log('username:', username = web3.toAscii(_username), i);
+
       $('#' + userCardId).find('.card-title').text(username);
       
       return instanceUsed.getIpfsHashByIndex.call(i);
@@ -104,8 +156,18 @@ window.App = {
     }).then(function(_ipfsHash) {
       console.log('ipfsHash:', ipfsHash = web3.toAscii(_ipfsHash), i);
 
-      if(ipfsHash != 'not-available') {
-       // …
+      if(ipfsHash.length == 46) {
+
+        var url = 'https://ipfs.io/ipfs/' + ipfsHash;
+
+        console.log('getting user info from', url);
+
+        $.getJSON(url, function(userJson) {
+          console.log('got user info from ipfs', userJson)
+
+          $('#' + userCardId).find('.card-subtitle').text(userJson.title);
+          $('#' + userCardId).find('.card-text').text(userJson.intro);
+        })
       }
 
       return instanceUsed.getAddressByIndex.call(i);
