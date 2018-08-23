@@ -1,7 +1,7 @@
 {
-  "name": "family-chain",
+  "name": "face-block",
   "version": "0.0.1",
-  "description": "Build a family-chain",
+  "description": "Face Block",
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",

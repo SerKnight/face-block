@@ -19,8 +19,8 @@
          </div>
       </nav>
       <div class="container-fluid">
-         <div class="alert alert-warning mt-3" role="alert">
-            This prototype is meant for demonstrations purposes only. Use at your own risk. When you create a profile, your information is publicly stored on the Ethereum blockchain, stored on IPFS, and displayed on this website.
+         <div class="alert alert-success mt-3" role="alert">
+            Welcome
          </div>
          <div class="row">
             <div class="col-lg-3 mt-1 mb-1">
@@ -29,16 +29,35 @@
                      <div class="card-body">
                         <h5 class="card-title">Create your profile</h5>
                         <div class="form-group">
-                           <label for="username">Username</label>
-                           <input type="text" class="form-control" id="sign-up-username" required="required">
+                           <input type="text" class="form-control" id="sign-up-username" required="required" placeholder="What is your name?">
                         </div>
                         <div class="form-group">
-                           <label for="username">Title</label>
-                           <input type="text" class="form-control" id="sign-up-title">
+                           <div class="custom-file">
+                              <input type="file" class="custom-file-input" id="sign-up-profile-pic" required onchange="readURL(this);">
+                              <label class="custom-file-label" for="validatedCustomFile">Profile Picture</label>
+                              <script type="text/javascript">
+                                 function readURL(input) {
+                                    if (input.files && input.files[0]) {
+                                       var reader = new FileReader();
+
+                                       reader.onload = function (e) {
+                                           $('#prof-pic-uploading')
+                                               .attr('src', e.target.result)
+                                               .width('100%')
+                                               .height('auto');
+                                       };
+                                       reader.readAsDataURL(input.files[0]);
+                                   }
+                                 }
+
+                              </script>
+                           </div>
                         </div>
                         <div class="form-group">
-                           <label for="username">Short intro</label>
-                           <textarea class="form-control" id="sign-up-intro" rows="2"></textarea>
+                           <input type="text" class="form-control" id="sign-up-title" placeholder="Explain yourself in a sentence">
+                        </div>
+                        <div class="form-group">
+                           <textarea class="form-control" id="sign-up-intro" rows="2" placeholder="What is your greatest goal in life?"></textarea>
                         </div>
                         <p>
                            ETH Address:
@@ -47,6 +66,15 @@
                         </p>
                         </p>
                         <button type="submit" class="btn btn-primary" id="sign-up-button">Sign Up</button> 
+
+                        <img id="prof-pic-uploading" src="" style='margin-top:20px'/>
+
+                        </br>
+                        </br>
+                        <a id="url"></a>
+                        </br>
+                        </br>
+                        <img id="output">
                      </div>
                   </form>
                </div>

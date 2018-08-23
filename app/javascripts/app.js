@@ -18,8 +18,8 @@ var accounts;
 var account;
 
 const ipfsAPI = require('ipfs-api');
-//const ipfs = ipfsAPI('localhost', '5001');
-const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'});
+const ipfs = ipfsAPI('localhost', '5001');
+//const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'});
 
 window.App = {
   
@@ -66,8 +66,8 @@ window.App = {
 
 
   createUser: function() {
-    
     var username = $('#sign-up-username').val();
+    var profilePic = $('#prof-pic-uploading').attr('src')
     var title = $('#sign-up-title').val();
     var intro = $('#sign-up-intro').val();
     var ipfsHash = '';
@@ -77,7 +77,8 @@ window.App = {
     var userJson = {
       username: username,
       title: title,
-      intro: intro
+      intro: intro,
+      profilePic: profilePic
     };
 
     ipfs.add([Buffer.from(JSON.stringify(userJson))], function(err, res) {
@@ -85,11 +86,10 @@ window.App = {
       if (err) throw err
       ipfsHash = res[0].hash
 
-      console.log('creating user on eth for ', username, title, intro, ipfsHash);
+      console.log('creating user on eth for ', username, title, intro, profilePic, ipfsHash);
       
       User.deployed().then(function(contractInstance) {
-        // contractInstance.createUser(web3.fromAscii(username), web3.fromAscii(title), intro, ipfsHash, {gas: 2000000, from: web3.eth.accounts[0]}).then(function(index) {
-      
+
         contractInstance.createUser(username, ipfsHash, {
           gas: 200000,
           from: web3.eth.accounts[0]
@@ -113,29 +113,6 @@ window.App = {
 
       });
     });
-
-
-    
-    // User.deployed().then(function(contractInstance) {
-    
-    //   contractInstance.createUser(username, ipfsHash, {
-    //     gas: 200000,
-    //     from: web3.eth.accounts[0]
-
-    //   }).then(function(success) {
-
-    //     if (success) {
-    //       console.log('created user on ethereum!');
-    //     } else {
-    //       console.log('error creating user on ethereum');
-    //     }
-
-    //   }).catch(function(e) {
-    //     // There was an error! Handle it.
-    //     console.log('error creating user: ', username, ':', e);
-    //   });
-
-    // });
   },
 
   getAUser: function(instance, i) {
@@ -158,7 +135,7 @@ window.App = {
 
       if(ipfsHash.length == 46) {
 
-        var url = 'https://ipfs.io/ipfs/' + ipfsHash;
+        var url = 'http://localhost:8080/ipfs/' + ipfsHash;
 
         console.log('getting user info from', url);
 
@@ -167,6 +144,7 @@ window.App = {
 
           $('#' + userCardId).find('.card-subtitle').text(userJson.title);
           $('#' + userCardId).find('.card-text').text(userJson.intro);
+          $('#' + userCardId).find('.card-profile').attr('src', userJson.profilePic);
         })
       }
 
@@ -233,7 +211,8 @@ window.App = {
               <div class="card-body">
                 <h5 class="card-title"></h5>
                 <h6 class="card-subtitle mb-2"></h6>
-                <p class="card-text"></p>        
+                <p class="card-text"></p>
+                <img class="card-profile"></img>
                 <p class="eth-address m-0 p-0">
                   <span class="card-eth-address"></span>
                 </p>
