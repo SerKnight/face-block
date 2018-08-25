@@ -28,7 +28,7 @@ cd face-block
 npm install
 ```
 
-This app will save a Face-Block entries data on IPFS and the user's ethereum address will store the address to fetch the correct data for the profiles.
+This app will save a Faceblock entries data on IPFS and the user's ethereum address will store the address to fetch the correct data for the profiles.
 
 In a new tab
 
@@ -55,7 +55,7 @@ Last things, then we can do stuff!
 
 `truffle migrate`
 
-# Creating a FaceBlock profile
+# Creating a Faceblock profile
 
 > 1. Open up the *Transactions* tab in the `Ganache` GUI, you should see some transactions from the Apps initialization.
 > 2. Under `Ganache's` Accounts tab, show one of the pre-seeded account keys on the right, and copy it in clipboard.
