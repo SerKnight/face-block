@@ -2,7 +2,7 @@
 
 > A decentralized application that creates profiles stored on the Ethereum blockchain using IPFS to house a user's data.
 
-![](https://media.giphy.com/media/vXGwYDn5HX9Ti/giphy.gif)
+[Example UI/UX filled with data](https://i.imgur.com/nUG6cWP.jpg)
 
 ### Dependencies
 * Metamask
@@ -64,17 +64,16 @@ Last things, then we can do stuff!
 You now have a running application & the first FaceBlock profile.
 **Only one user allowed per private key** to add more profiles repeat steps *2..6*
 
-![Example UI/UX filled with data](https://imgur.com/a/S1VvliZ)
-
 If you run into any issues getting it running -> chrisknight.mail@gmail.com
 
+![](https://media.giphy.com/media/vXGwYDn5HX9Ti/giphy.gif)
 
 # TODO & Notes
 
 * You may have to wait a bit & reload after profiles are added to Ganache + IPFS to fully reflect all the profiles.. 
 * You will need to reload if you change your metamask account for the app to pickup the new address.
 * I need to work on the UI/UX logging to utilize the contract events with Web3
-* I 
+* reference common errors for troubleshooting
 
 # Testing
 
