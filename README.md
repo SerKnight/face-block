@@ -1,4 +1,4 @@
-# FaceBlock
+# Faceblock
 
 > A decentralized application that creates profiles stored on the Ethereum blockchain using IPFS to house a user's data.
 
