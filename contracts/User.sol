@@ -1,8 +1,8 @@
 pragma solidity ^ 0.4 .19;
 contract User {
 
-  mapping(address => uint) private addressToIndex;
-  mapping(bytes16 => uint) private usernameToIndex;
+  mapping(address => uint256) private addressToIndex;
+  mapping(bytes16 => uint256) private usernameToIndex;
   address[] private addresses;
   bytes16[] private usernames;
   bytes16[] private ipfsHashes;
@@ -10,9 +10,11 @@ contract User {
   event LogUserCreated(address userAddress);
 
   constructor() public {
-    // mappings are virtually initialized to zero values so we need to "waste" the first element of the arrays
-    // instead of wasting it we use it to create a user for the contract itself
     addresses.push(msg.sender);
+    /* 
+      push a username of self for the user's address who inits the Contract
+      while defaulting that user's ipfsHash to not-available
+    */
     usernames.push('self');
     ipfsHashes.push('not-available');
   }
@@ -25,14 +27,9 @@ contract User {
     return (usernameToIndex[username] > 0 || username == 'self');
   }
 
-  function ipfsHashPresent(bytes16 ipfsHash) internal pure returns(bool hashPresent) {
-    return (ipfsHash.length > 40);
-  }
-
   function createUser(bytes16 username, bytes16 ipfsHash) public returns(bool success) {
     require(!hasUser(msg.sender));
     require(!usernameTaken(username));
-    require(!ipfsHashPresent(ipfsHash));
     addresses.push(msg.sender);
     usernames.push(username);
     ipfsHashes.push(ipfsHash);
@@ -44,21 +41,21 @@ contract User {
     return true;
   }
 
-  function getUserCount() public view returns(uint count) {
+  function getUserCount() public view returns(uint256 count) {
     return addresses.length;
   }
 
-  function getAddressByIndex(uint index) public view returns(address userAddress) {
+  function getAddressByIndex(uint256 index) public view returns(address userAddress) {
     require(index < addresses.length);
     return addresses[index];
   }
 
-  function getUsernameByIndex(uint index) public view returns(bytes16 username) {
+  function getUsernameByIndex(uint256 index) public view returns(bytes16 username) {
     require(index < addresses.length);
     return usernames[index];
   }
 
-  function getIpfsHashByIndex(uint index) public view returns(bytes16 ipfsHash) {
+  function getIpfsHashByIndex(uint256 index) public view returns(bytes16 ipfsHash) {
     require(index < addresses.length);
     return ipfsHashes[index];
   }

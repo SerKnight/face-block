@@ -20,6 +20,7 @@ var account;
 const ipfsAPI = require('ipfs-api');
 const ipfs = ipfsAPI('localhost', '5001');
 // const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'});
+// couldn't effectively get infura's hosted ipfs node to store & return data
 
 window.App = {
   

@@ -59,8 +59,8 @@ Last things, then we can do stuff!
 > 5. Paste into *private key*
 > 6. Enter all details to create a profile & hit **Sign Up**
 
-You now have a running application. There is only one user allowed per private key, to add addition profiles, repeat steps *2..6*
-
+You now have a running application & the first FaceBlock profile.
+**Only one user allowed per private key** to add more profiles repeat steps *2..6*
 
 # Testing
 
@@ -68,7 +68,10 @@ Test can be run using:
 
 `truffle test --development`
 
-Test suite is focused around UserProfile creation being limited to one per address & that certain validations and events are emitted during contract usage.
+* Test suite is primarily focused around UserProfile creation being limited to one per address
+* Also important to test that certain validations and events are emitted during contract usage
+	* unique address
+	* unique username
 
 -------------------------------------------
 
