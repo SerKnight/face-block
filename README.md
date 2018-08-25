@@ -64,6 +64,9 @@ Last things, then we can do stuff!
 You now have a running application & the first FaceBlock profile.
 **Only one user allowed per private key** to add more profiles repeat steps *2..6*
 
+![Example UI/UX filled with data](https://imgur.com/a/S1VvliZ)
+
+
 # TODO & Notes
 
 * You may have to wait a bit & reload after profiles are added to Ganache + IPFS to fully reflect all the profiles.. 
