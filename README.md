@@ -53,16 +53,11 @@ Last things, then we can do stuff!
 # Creating a FaceBlock profile
 
 > 1. Open up the *Transactions* tab in the `Ganache` GUI, you should see some transactions from the Apps initialization.
-
-	2. Under `Ganache's` Accounts tab, show one of the pre-seeded account keys on the right, and copy it in clipboard.
-
-	3. Head over to `http://localhost:8081` and in the `MetaMask` plugin, click the users icon, and at the bottom, *Import Account*
-
-	4. Reload the page, and your imported account address should be loaded in the Signup *Eth Address* input
-
-	5. Paste into *private key*
-
-	6. Enter all details to create a profile & hit **Sign Up**
+> 2. Under `Ganache's` Accounts tab, show one of the pre-seeded account keys on the right, and copy it in clipboard.
+> 3. Head over to `http://localhost:8081` and in the `MetaMask` plugin, click the users icon, and at the bottom, *Import Account*
+> 4. Reload the page, and your imported account address should be loaded in the Signup *Eth Address* input
+> 5. Paste into *private key*
+> 6. Enter all details to create a profile & hit **Sign Up**
 
 You now have a running application. There is only one user allowed per private key, to add addition profiles, repeat steps *2..6*
 
