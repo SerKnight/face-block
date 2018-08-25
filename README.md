@@ -64,8 +64,9 @@ Last things, then we can do stuff!
 > 5. Paste into *private key*
 > 6. Enter all details to create a profile & hit **Sign Up**
 
-You now have a running application & the first FaceBlock profile.
-**Only one user allowed per private key** to add more profiles repeat steps *2..6*
+> Though the app does reload after success.. I didn't perfect the timing for when IPFS data is accessible and you may need to wait a few and reload manually for your user records to be loaded back in.
+
+You now have a running application & the first FaceBlock profile! There is only ** one user ** allowed per private key so to add more profiles, swap your ETH account by repeating steps *2..6*
 
 If you run into any issues getting it running -> chrisknight.mail@gmail.com
 
