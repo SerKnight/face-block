@@ -66,6 +66,8 @@ You now have a running application & the first FaceBlock profile.
 
 ![Example UI/UX filled with data](https://imgur.com/a/S1VvliZ)
 
+If you run into any issues getting it running -> chrisknight.mail@gmail.com
+
 
 # TODO & Notes
 
