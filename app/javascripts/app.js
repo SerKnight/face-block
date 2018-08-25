@@ -24,12 +24,14 @@ const ipfs = ipfsAPI('localhost', '5001');
 window.App = {
   
   start: function() {
+    $('.progress').show()
     
     var self = this;
 
     ipfs.id(function(err, res) {
       if (err) throw err
       console.log("Connected to IPFS node!", res.id, res.agentVersion, res.protocolVersion);
+      $('#current-action').text("Connected to IPFS node!", res.id, res.agentVersion, res.protocolVersion);
     });
     
     web3.eth.getAccounts(function(error, accounts) {
@@ -61,6 +63,10 @@ window.App = {
 
       self.getUsers();
 
+      setTimeout(function(){
+        $('#current-action').fadeOut()
+        $('.progress').fadeOut()
+      }, 2500);
     });
   },
 
@@ -73,6 +79,7 @@ window.App = {
     var ipfsHash = '';
     
     console.log('creating user on ipfs for', username);
+    $('#current-action').text('creating user on ipfs for', username);
 
     var userJson = {
       username: username,
@@ -87,6 +94,7 @@ window.App = {
       ipfsHash = res[0].hash
 
       console.log('creating user on eth for ', username, title, intro, profilePic, ipfsHash);
+      $('#current-action').text('creating user on eth for ', username, title, intro, profilePic, ipfsHash);
       
       User.deployed().then(function(contractInstance) {
 
@@ -97,22 +105,26 @@ window.App = {
         }).then(function(success) {
 
           if (success) {
-            
             console.log('created user on ethereum!');
-            
-            window.location.reload;
+            $('#current-action').text('created user on ethereum!');
+
+            setTimeout(function(){
+              window.location.reload();
+            }, 2500);
 
           } else {
             console.log('error creating user on ethereum');
+            $('#current-action').text('error creating user on ethereum');
           }
 
         }).catch(function(e) {
           // There was an error! Handle it.
           console.log('error creating user: ', username, ': ', e);
+          $('#current-action').text('error creating user: ', username, ': ', e);
         });
-
       });
     });
+  
   },
 
   getAUser: function(instance, i) {
@@ -125,6 +137,7 @@ window.App = {
     return instanceUsed.getUsernameByIndex.call(i).then(function(_username) {
 
       console.log('username:', username = web3.toAscii(_username), i);
+      $('#current-action').text('username:', username = web3.toAscii(_username), i);
 
       $('#' + userCardId).find('.card-title').text(username);
       
@@ -132,15 +145,18 @@ window.App = {
     
     }).then(function(_ipfsHash) {
       console.log('ipfsHash:', ipfsHash = web3.toAscii(_ipfsHash), i);
+      $('#current-action').text('ipfsHash:', ipfsHash = web3.toAscii(_ipfsHash), i);
 
       if(ipfsHash.length == 46) {
 
         var url = 'http://localhost:8080/ipfs/' + ipfsHash;
 
         console.log('getting user info from', url);
+        $('#current-action').text('getting user info from', url);
 
         $.getJSON(url, function(userJson) {
           console.log('got user info from ipfs', userJson)
+          $('#current-action').text('got user info from ipfs', userJson)
 
           $('#' + userCardId).find('.card-subtitle').text(userJson.title);
           $('#' + userCardId).find('.card-text').text(userJson.intro);
@@ -153,6 +169,7 @@ window.App = {
     }).then(function(_address) {
     
       console.log('address:', address = _address, i);
+      $('#current-action').text('address:', address = _address, i);
 
       $('#' + userCardId).find('.card-eth-address').text(address);
 
@@ -161,6 +178,7 @@ window.App = {
     }).catch(function(e) {
 
       console.log('error getting user #', i, ':', e);
+      $('#current-action').text('error getting user #', i, ':', e);
 
     });
 
@@ -182,6 +200,7 @@ window.App = {
       userCount = userCount.toNumber();
       
       console.log('User count', userCount);
+      $('#current-action').text('User count', userCount);
 
       var rowCount = 0;
       var usersDiv = $('#users-div');
@@ -222,8 +241,8 @@ window.App = {
 
         currentRow.append(userTemplate);
       }
-
       console.log("getting users...");
+      $('#current-action').text("getting users...");
 
       for(var i = 0; i < userCount; i++) {
         self.getAUser(instanceUsed, i);
@@ -231,8 +250,6 @@ window.App = {
 
     });
   }
-
-
 };
 
 window.addEventListener('load', function() {

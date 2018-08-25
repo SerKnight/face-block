@@ -40,12 +40,12 @@ This app will save a Face-Block entries data on IPFS and the user's ethereum add
 ----------------------
 
 1. `npm run dev`
-2. Boot Ganache desktop app
+2. Boot Ganache desktop app, in the settings *top right* make sure the port is set to `8545`
 4. Open up `http://localhost:8081` -> ipfs will default to 8080, so webpack should increment this by 1 port
 5. Connect `Metamask` to `Ganache`
 	* Open `Metamask` chrome plugin from browser
 	* Click settings dropdown, then `Custom RPC`
-	* Enter `http://localhost:7545` under Custom RPC & Save
+	* Enter `http://localhost:8545` under Custom RPC & Save
 
 Last things, then we can run the app :)
 
@@ -74,7 +74,7 @@ Last things, then we can run the app :)
 > If you get failed transactions after running this a lot of different times, the console errors might say Nonce is off. (Documentation of issue)[https://github.com/MetaMask/metamask-extension/issues/1999] You can do the following: 
 	* Change network id in ganache ui (settings) and restart
   * `truffle migrate --reset`
-	* go to browser and change to another network (ex. Ropsten) and afterwards back to the private network, `http://localhost:7545`
+	* go to browser and change to another network (ex. Ropsten) and afterwards back to the private network, `http://localhost:8545`
 	
 
 You now have a running application. There is only one user allowed per private key, so if you would like to create addition profiles, repeat steps *2..6*
@@ -84,7 +84,7 @@ You now have a running application. There is only one user allowed per private k
 
 
 
-images
+
 
 
 
