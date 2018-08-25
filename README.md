@@ -25,7 +25,6 @@ Download: (MetaMask)[https://chrome.google.com/webstore/detail/metamask/nkbihfbe
 Ganache is used to local blockchain to interface with our smart contracts
 Download: (Ganache)[https://truffleframework.com/ganache]
 
-
 ## IPFS
 *Inter Planetary File Storage* IPFS works similarly to the bittorent client in that it uses a content based lookup system instead of an address based on like HTTP. This enables users to request files stored on the network that are the closest to the client, vs at a predefined adress. Theoretically if someone from Mars downloaded a movie from IPFS, the first load would take a day or so, but other Mars network users would then get the file from that local source, rather than having to re-download it from Earth!
 
@@ -67,18 +66,27 @@ Last things, then we can run the app :)
 6. Enter all details to create a profile & hit **Sign Up**
 
 
+You now have a running application. There is only one user allowed per private key, to add addition profiles, repeat steps *2..6*
+
+
+# Testing
+
+Test can be run using:
+
+`truffle test --development`
+
+Test suite is focused around UserProfile creation being limited to one per address & that certain validations and events are emitted during contract usage.
+
+
 # Common Errors
 
 > If you start/stop ganache occasionally gets our of sync, and you may have to run `truffle migrate --reset`
 
-> If you get failed transactions after running this a lot of different times, the console errors might say Nonce is off. (Documentation of issue)[https://github.com/MetaMask/metamask-extension/issues/1999] You can do the following: 
+> If you get failed transactions ex *after importing lots of accounts / restarting Ganache*, the console errors might say Nonce is off. (Documentation of issue)[https://github.com/MetaMask/metamask-extension/issues/1999] To fix You can do the following: 
 	* Change network id in ganache ui (settings) and restart
   * `truffle migrate --reset`
 	* go to browser and change to another network (ex. Ropsten) and afterwards back to the private network, `http://localhost:8545`
 	
-
-You now have a running application. There is only one user allowed per private key, so if you would like to create addition profiles, repeat steps *2..6*
-
 -------------------
 
 
