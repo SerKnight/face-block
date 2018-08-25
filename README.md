@@ -2,7 +2,7 @@
 
 > A decentralized application that creates profiles stored on the Ethereum blockchain using IPFS to house a user's data.
 
-[Example UI/UX filled with data](https://i.imgur.com/nUG6cWP.jpg)
+![Example UI/UX filled with data](https://i.imgur.com/nUG6cWP.jpg)
 
 ### Dependencies
 * Metamask
