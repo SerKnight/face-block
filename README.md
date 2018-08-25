@@ -64,6 +64,13 @@ Last things, then we can do stuff!
 You now have a running application & the first FaceBlock profile.
 **Only one user allowed per private key** to add more profiles repeat steps *2..6*
 
+# TODO & Notes
+
+* You may have to wait a bit & reload after profiles are added to Ganache + IPFS to fully reflect all the profiles.. 
+* You will need to reload if you change your metamask account for the app to pickup the new address.
+* I need to work on the UI/UX logging to utilize the contract events with Web3
+* I 
+
 # Testing
 
 Test can be run using:

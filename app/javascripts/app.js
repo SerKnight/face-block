@@ -62,11 +62,9 @@ window.App = {
         return false;
       });
 
-
       self.getUsers();
 
       setTimeout(function(){
-        $('#current-action').fadeOut()
         $('.progress').fadeOut()
       }, 2500);
     });
@@ -112,7 +110,7 @@ window.App = {
 
             setTimeout(function(){
               window.location.reload();
-            }, 2500);
+            }, 20500);
 
           } else {
             console.log('error creating user on ethereum');
@@ -156,7 +154,7 @@ window.App = {
 
         $.getJSON(url, function(userJson) {
           console.log('got user info from ipfs', userJson)
-          $('#current-action').text('got user info from ipfs -> ' + userJson)
+          $('#current-action').text('got user info from IPFS')
 
           $('#' + userCardId).find('.card-subtitle').text(userJson.title);
           $('#' + userCardId).find('.card-text').text(userJson.intro);
@@ -170,8 +168,7 @@ window.App = {
     
       console.log('address:', address = _address, i);
       $('#current-action').text('address: ' + address);
-
-      $('#' + userCardId).find('.card-eth-address').text(address);
+      $('#' + userCardId).find('.card-eth-address').text('ETH address: ' + address);
 
       return true;
     
@@ -197,43 +194,45 @@ window.App = {
     }).then(function(userCount) {
 
       userCount = userCount.toNumber();
-      
       console.log('User count', userCount);
+
       $('#current-action').text('User count -> ' + userCount);
 
-      var rowCount = 0;
+      var rowCount = 1;
       var usersDiv = $('#users-div');
+      usersDiv.addClass('main-row');
       var currentRow;
 
       for(var i = 0; i < userCount; i++) {
 
         var userCardId = 'user-card-' + i;
+        
+        var currentRowId = 'user-row-' + rowCount;
 
-        if(i % 4 == 0) {
-          
-          var currentRowId = 'user-row-' + rowCount;
+        var userRowTemplate = '<div class="row" id="' + currentRowId + '"></div>';
 
-          var userRowTemplate = '<div class="row" id="' + currentRowId + '"></div>';
+        usersDiv.append(userRowTemplate);
 
-          usersDiv.append(userRowTemplate);
-
-          currentRow = $('#' + currentRowId);
-
-          rowCount++;
-        }
+        currentRow = $('#' + currentRowId);
 
         
         var userTemplate = `
           <div class="col-lg-12 mt-1 mb-1" id="` + userCardId + `">
             <div class="card bg-gradient-primary text-white card-profile p-1">
               <div class="card-body">
-                <img class="card-profile"></img>
-                <h5 class="card-title"></h5>
-                <h6 class="card-subtitle mb-2"></h6>
-                <p class="card-text"></p>
-                <p class="eth-address m-0 p-0">
-                  <span class="card-eth-address"></span>
-                </p>
+                <div class='row'>
+                  <div class="col-lg-4">
+                    <img class="card-profile"></img>
+                  </div>
+                  <div class="col-lg-8">
+                    <h5 class="card-title"></h5>
+                    <h6 class="card-subtitle mb-2"></h6>
+                    <p class="card-text"></p>
+                  </div>
+                  <p class="eth-address m-0 p-0">
+                    <span class="card-eth-address"></span>
+                  </p>
+                </div>
               </div>
             </div>
           </div>`;

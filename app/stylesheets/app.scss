@@ -37,6 +37,14 @@ body {
   }
 }
 
+.main-row {
+  height: auto;
+  overflow-y: scroll;
+  border-radius: 10px;
+  padding: 15px;
+  max-height: 700px;
+  border: 1px lightgray;
+}
 /* Custom page CSS
 -------------------------------------------------- */
 
@@ -61,4 +69,8 @@ body > .container {
 .card-profile {
   max-width: 100%;
   margin-bottom: 20px;
+}
+
+#user-card-0 {
+  display: none;
 }
