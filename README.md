@@ -78,6 +78,7 @@ If you run into any issues getting it running -> chrisknight.mail@gmail.com
 * You will need to reload if you change your metamask account for the app to pickup the new address.
 * I need to work on the UI/UX logging to utilize the contract events with Web3
 * reference common errors for troubleshooting
+* I ended up storing images as DataURI's as it seemed the most effective way, but i'd like to learn the golden way for IPFS content sharing!
 
 # Testing
 
