@@ -19,7 +19,7 @@ var account;
 
 const ipfsAPI = require('ipfs-api');
 const ipfs = ipfsAPI('localhost', '5001');
-//const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'});
+// const ipfs = ipfsAPI('ipfs.infura.io', '5001', {protocol: 'https'});
 
 window.App = {
   
@@ -31,7 +31,7 @@ window.App = {
     ipfs.id(function(err, res) {
       if (err) throw err
       console.log("Connected to IPFS node!", res.id, res.agentVersion, res.protocolVersion);
-      $('#current-action').text("Connected to IPFS node!", res.id, res.agentVersion, res.protocolVersion);
+      $('#current-action').text("Connected to IPFS node! " + res.id, res.agentVersion, res.protocolVersion);
     });
     
     web3.eth.getAccounts(function(error, accounts) {
@@ -79,7 +79,7 @@ window.App = {
     var ipfsHash = '';
     
     console.log('creating user on ipfs for', username);
-    $('#current-action').text('creating user on ipfs for', username);
+    $('#current-action').text('creating user on ipfs for: ' + username);
 
     var userJson = {
       username: username,
@@ -94,7 +94,7 @@ window.App = {
       ipfsHash = res[0].hash
 
       console.log('creating user on eth for ', username, title, intro, profilePic, ipfsHash);
-      $('#current-action').text('creating user on eth for ', username, title, intro, profilePic, ipfsHash);
+      $('#current-action').text('creating user on eth for ' + username + ' / ' + title + ' / ' + intro + ' / ' + ipfsHash);
       
       User.deployed().then(function(contractInstance) {
 
@@ -120,7 +120,7 @@ window.App = {
         }).catch(function(e) {
           // There was an error! Handle it.
           console.log('error creating user: ', username, ': ', e);
-          $('#current-action').text('error creating user: ', username, ': ', e);
+          $('#current-action').text('error creating user: ' + username);
         });
       });
     });
@@ -137,7 +137,7 @@ window.App = {
     return instanceUsed.getUsernameByIndex.call(i).then(function(_username) {
 
       console.log('username:', username = web3.toAscii(_username), i);
-      $('#current-action').text('username:', username = web3.toAscii(_username), i);
+      $('#current-action').text('username: ' + username);
 
       $('#' + userCardId).find('.card-title').text(username);
       
@@ -145,18 +145,16 @@ window.App = {
     
     }).then(function(_ipfsHash) {
       console.log('ipfsHash:', ipfsHash = web3.toAscii(_ipfsHash), i);
-      $('#current-action').text('ipfsHash:', ipfsHash = web3.toAscii(_ipfsHash), i);
+      $('#current-action').text('ipfsHash: ' + ipfsHash);
 
-      if(ipfsHash.length == 46) {
-
-        var url = 'http://localhost:8080/ipfs/' + ipfsHash;
-
+      if(ipfsHash != 'not-available') {
+        var url = 'https://ipfs.io/ipfs/' + ipfsHash;
         console.log('getting user info from', url);
-        $('#current-action').text('getting user info from', url);
+        $('#current-action').text('getting user info from -> ' + url);
 
         $.getJSON(url, function(userJson) {
           console.log('got user info from ipfs', userJson)
-          $('#current-action').text('got user info from ipfs', userJson)
+          $('#current-action').text('got user info from ipfs -> ' + userJson)
 
           $('#' + userCardId).find('.card-subtitle').text(userJson.title);
           $('#' + userCardId).find('.card-text').text(userJson.intro);
@@ -169,16 +167,15 @@ window.App = {
     }).then(function(_address) {
     
       console.log('address:', address = _address, i);
-      $('#current-action').text('address:', address = _address, i);
+      $('#current-action').text('address: ' + address);
 
       $('#' + userCardId).find('.card-eth-address').text(address);
 
       return true;
     
     }).catch(function(e) {
-
       console.log('error getting user #', i, ':', e);
-      $('#current-action').text('error getting user #', i, ':', e);
+      $('#current-action').text('error getting user ' + e);
 
     });
 
@@ -200,7 +197,7 @@ window.App = {
       userCount = userCount.toNumber();
       
       console.log('User count', userCount);
-      $('#current-action').text('User count', userCount);
+      $('#current-action').text('User count -> ' + userCount);
 
       var rowCount = 0;
       var usersDiv = $('#users-div');
