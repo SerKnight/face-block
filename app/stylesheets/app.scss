@@ -20,7 +20,21 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
-  background-color: #f5f5f5;
+  background-color: #4267b2;
+}
+
+.bg-gradient-primary {
+  background-color: #4267b2 !important; 
+  background: #4267b2 !important; 
+}
+
+.navbar-primary {
+  margin-bottom: 10px;
+
+
+  .navbar-brand {
+    color: #ffffff;
+  }
 }
 
 /* Custom page CSS

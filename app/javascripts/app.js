@@ -26,6 +26,7 @@ window.App = {
   
   start: function() {
     $('.progress').show()
+    $('#current-action').show()
     
     var self = this;
 
@@ -148,8 +149,8 @@ window.App = {
       console.log('ipfsHash:', ipfsHash = web3.toAscii(_ipfsHash), i);
       $('#current-action').text('ipfsHash: ' + ipfsHash);
 
-      if(ipfsHash != 'not-available') {
-        var url = 'https://ipfs.io/ipfs/' + ipfsHash;
+      if(!ipfsHash.includes('not-available')) {
+        var url = 'http://localhost:8080/ipfs/' + ipfsHash;
         console.log('getting user info from', url);
         $('#current-action').text('getting user info from -> ' + url);
 
@@ -223,13 +224,13 @@ window.App = {
 
         
         var userTemplate = `
-          <div class="col-lg-3 mt-1 mb-1" id="` + userCardId + `">
+          <div class="col-lg-12 mt-1 mb-1" id="` + userCardId + `">
             <div class="card bg-gradient-primary text-white card-profile p-1">
               <div class="card-body">
+                <img class="card-profile"></img>
                 <h5 class="card-title"></h5>
                 <h6 class="card-subtitle mb-2"></h6>
                 <p class="card-text"></p>
-                <img class="card-profile"></img>
                 <p class="eth-address m-0 p-0">
                   <span class="card-eth-address"></span>
                 </p>

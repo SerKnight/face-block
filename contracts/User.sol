@@ -5,7 +5,7 @@ contract User {
   mapping(bytes16 => uint256) private usernameToIndex;
   address[] private addresses;
   bytes16[] private usernames;
-  bytes16[] private ipfsHashes;
+  bytes[] private ipfsHashes;
 
   event LogUserCreated(address userAddress);
 
@@ -27,7 +27,7 @@ contract User {
     return (usernameToIndex[username] > 0 || username == 'self');
   }
 
-  function createUser(bytes16 username, bytes16 ipfsHash) public returns(bool success) {
+  function createUser(bytes16 username, bytes ipfsHash) public returns(bool success) {
     require(!hasUser(msg.sender));
     require(!usernameTaken(username));
     addresses.push(msg.sender);
@@ -55,7 +55,7 @@ contract User {
     return usernames[index];
   }
 
-  function getIpfsHashByIndex(uint256 index) public view returns(bytes16 ipfsHash) {
+  function getIpfsHashByIndex(uint256 index) public view returns(bytes ipfsHash) {
     require(index < addresses.length);
     return ipfsHashes[index];
   }

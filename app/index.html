@@ -3,28 +3,23 @@
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
       <script src="./app.js"></script>
-      <title>Profiles</title>
+      <title>Faceblock</title>
    </head>
    <body>
-      <nav class="navbar navbar-expand-lg navbar-primary bg-light">
+      <nav class="navbar navbar-expand-lg navbar-primary bg-gradient-primary">
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
          <span class="navbar-toggler-icon"></span>
          </button>
-         <a class="navbar-brand" href="#">Profiles</a>
-         <div class="collapse navbar-collapse" id="navbarToggler">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-               <a class="nav-link" href="/">Home</a>
-            </li>
+         <a class="navbar-brand" href="#">Faceblock</a>
+         <div class="alert alert-success mt-3" id="current-action" role="alert">
+            Welcome
          </div>
       </nav>
       <div class="container-fluid">
          <div class="progress">
            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
          </div>
-         <div class="alert alert-success mt-3" id="current-action" role="alert">
-            Welcome
-         </div>
+         <hr>
          <div class="row">
             <div class="col-lg-3 mt-1 mb-1">
                <div class="card card-profile-signup p-1">
@@ -82,14 +77,22 @@
                   </form>
                </div>
             </div>
-            <div class="col-lg-9 mt-1 mb-1" id="users-div">
+            <div class="col-lg-6 mt-1 mb-1" id="users-div">
+               <!-- content -->
+            </div>
+
+            <div class="col-lg-3 mt-1 mb-1">
+               <div class="card p-1">
+                  <div class="card-body">
+                     
+                     <h5 class="card-title">Face-Block</h5>
+                     <i>User Profiles stored on the blockchain.</i>
+
+                     <p>Each entry will add a User record to the Ethereum blockchain. It will store the senders address, their username, and a hash that references an endpoint on the <a href='https://ipfs.io/'>IPFS</a> network. AKA the Interplanetary File System. This was my final project for <a href='https://consensys.net/academy/'>Consensys Academy</a> which I took in hopes of learning the basics of Solidity smart contract develpoment, and building in the Web3 ecosystem.</p>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
-      <footer class="footer">
-         <div class="container">
-            <span class="text-muted">A demo dapp.</span>
-         </div>
-      </footer>
    </body>
 </html>

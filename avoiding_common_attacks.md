@@ -1,4 +1,6 @@
-To *Avoid Commond Attacks* for a simple application such as face-block I took the following measures.
+### To *Avoid Commond Attacks* for a simple application such as face-block I took the following measures.
+
+* setup an 
 
 * Unit tested the scenarios that posed the most risk to the application
 
@@ -11,7 +13,7 @@ To *Avoid Commond Attacks* for a simple application such as face-block I took th
 
 -------- 
 
-Things I could have implemented if the complexity of the application evolved include:
+### Things I could have implemented if the complexity of the application evolved include:
 
 * Implenting a circuit breaker by stopping when a new error is thrown.
 

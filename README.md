@@ -21,11 +21,13 @@ Download: (Ganache)[https://truffleframework.com/ganache]
 
 This app will save a Face-Block entries data on IPFS and the user's ethereum address will store the address to fetch the correct data for the profiles.
 
-`brew install ipfs`
-`ipfs init`
-`ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "[\"*\"]"`
-`ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials "[\"true\"]"`
-`ipfs daemon` -> starts ipfs on port 8080
+```
+brew install ipfs
+ipfs init
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Origin "[\"*\"]"
+ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials "[\"true\"]"
+ipfs daemon
+```
 
 ## Running the Application
 
