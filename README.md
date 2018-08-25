@@ -19,7 +19,18 @@ Download: (Ganache)[https://truffleframework.com/ganache]
 ### IPFS
 *Inter Planetary File Storage* IPFS works similarly to the bittorent client in that it uses a content based lookup system instead of an address based on like HTTP. This enables users to request files stored on the network that are the closest to the client, vs at a predefined adress. Theoretically if someone from Mars downloaded a movie from IPFS, the first load would take a day or so, but other Mars network users would then get the file from that local source, rather than having to re-download it from Earth!
 
+## Running the Application
+
+```
+npm install -g truffle
+git clone https://github.com/SerKnight/face-block.git
+cd face-block
+npm install
+```
+
 This app will save a Face-Block entries data on IPFS and the user's ethereum address will store the address to fetch the correct data for the profiles.
+
+In a new tab
 
 ```
 brew install ipfs
@@ -29,16 +40,8 @@ ipfs config --json API.HTTPHeaders.Access-Control-Allow-Credentials "[\"true\"]"
 ipfs daemon
 ```
 
-## Running the Application
-
-```
-npm install -g truffle
-npm install
-```
-
 ----------------------
-1. `ipfs daemon`
-2. `npm run dev`
+1. `npm run dev`
 2. Boot Ganache desktop app, in the settings *top right* make sure the port is set to `8545`
 4. Open up `http://localhost:8081` -> ipfs will default to 8080, so webpack should increment this by 1 port
 5. Connect `Metamask` to `Ganache`
