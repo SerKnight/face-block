@@ -13,7 +13,7 @@
 
 ### Things I could have implemented if the complexity of the application evolved include:
 
-* Implenting a circuit breaker by stopping when a new error is thrown.
+* Implementing a circuit breaker by stopping when a new error is thrown.
 
 * being very aware of open function & calls to external functions to stop any recursive calls
 
