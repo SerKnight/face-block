@@ -1,7 +1,5 @@
 ### To *Avoid Commond Attacks* for a simple application such as face-block I took the following measures.
 
-* setup an 
-
 * Unit tested the scenarios that posed the most risk to the application
 
 * Used require conditions to validate that user input varibles are valid and of the right type

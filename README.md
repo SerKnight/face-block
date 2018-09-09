@@ -17,7 +17,7 @@ Ganache is used to local blockchain to interface with our smart contracts
 Download: (Ganache)[https://truffleframework.com/ganache]
 
 ### IPFS
-*Inter Planetary File Storage* IPFS works similarly to the bittorent client in that it uses a content based lookup system instead of an address based on like HTTP. This enables users to request files stored on the network that are the closest to the client, vs at a predefined adress. Theoretically if someone from Mars downloaded a movie from IPFS, the first load would take a day or so, but other Mars network users would then get the file from that local source, rather than having to re-download it from Earth!
+*Inter Planetary File Storage* IPFS works similarly to the bittorent client in that it uses a content based lookup system instead of an address based on like HTTP. This enables users to request files stored on the network that are the closest to the client, vs at a predefined address. Theoretically if someone from Mars downloaded a movie from IPFS, the first load would take a day or so, but other Mars network users would then get the file from that local source, rather than having to re-download it from Earth!
 
 ## Running the Application
 
